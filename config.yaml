@@ -1,0 +1,20 @@
+---
+processes:
+- name: test_name1
+  executable-path: /Desktop/test_folder
+  stdout-config:
+    file: /var/log/apps/example_app1.log
+    mode: append
+  args-convention: gadost
+  cmd-arguments:
+    - recursive: ""
+    - output: output.txt
+- name: test_name1
+  executable-path: /Desktop/test_folder
+  stdout-config:
+    file: /var/log/apps/example_app1.log
+    mode: append
+  args-convention: linux
+  cmd-arguments:
+  - option-name: arg1
+  - option-name: arg2
