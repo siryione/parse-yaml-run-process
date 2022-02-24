@@ -5,11 +5,11 @@ processes:
   stdout-config:
     file: /var/log/apps/example_app1.log
     mode: append
-  args-convention: gadost
+  args-convention: windows
   cmd-arguments:
     - recursive: ""
     - output: output.txt
-- name: test_name1
+- name: test_name2
   executable-path: /Desktop/test_folder
   stdout-config:
     file: /var/log/apps/example_app1.log
