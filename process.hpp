@@ -3,8 +3,12 @@
 
 #include "yaml-cpp/yaml.h"
 
+#include <boost/process.hpp>
+
 #include <string>
 #include <vector>
+#include <map>
+
 
 struct CmdArgument{
     std::string name;
@@ -20,6 +24,10 @@ enum struct ArgsConvention{
     windows_c, linux_c, unix_c
 };
 
+const std::map<std::string, ArgsConvention> kArgsConvention{
+    {"windows", ArgsConvention::windows_c}, {"linux", ArgsConvention::linux_c}, {"unix", ArgsConvention::unix_c}
+};
+
 struct Process{
     std::string name;
     std::string executable_path;
@@ -27,9 +35,12 @@ struct Process{
     ArgsConvention args_convention;
     std::vector<CmdArgument> cmd_arguments;
 
+    int run();
     std::string getExe();
-    // map<><> getArgs();
+    std::vector<std::string> getArgs();
     // io_options()
+    private:
+    std::string output_buffer_{};
 };
 
 template<>
@@ -79,21 +90,31 @@ struct YAML::convert<ArgsConvention>{
 
     static bool decode(const YAML::Node &node, ArgsConvention &ac){
         std::string convention = node.as<std::string>();
-        // <map> it
-        if(convention == "windows"){
-            ac = ArgsConvention::windows_c;
-        }
-        else if(convention == "linux"){
-            ac = ArgsConvention::linux_c;
-        }
-        else if(convention == "unix"){
-            ac = ArgsConvention::unix_c;
+        
+        auto search = kArgsConvention.find(convention);
+        if(kArgsConvention.end() != search){
+            ac = search->second;
         }
         else{
             // elaborate
             return false;
         }
         return true;
+
+        // if(convention == "windows"){
+        //     ac = ArgsConvention::windows_c;
+        // }
+        // else if(convention == "linux"){
+        //     ac = ArgsConvention::linux_c;
+        // }
+        // else if(convention == "unix"){
+        //     ac = ArgsConvention::unix_c;
+        // }
+        // else{
+        //     // elaborate
+        //     return false;
+        // }
+        // return true;
     }
 
 };

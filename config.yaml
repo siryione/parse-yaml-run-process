@@ -1,20 +1,20 @@
 ---
 processes:
-- name: test_name1
-  executable-path: /Desktop/test_folder
+- name: ffmpeg
+  executable-path: /usr/bin
   stdout-config:
-    file: /var/log/apps/example_app1.log
-    mode: append
-  args-convention: windows
+    file: /home/ivan_main/development/technical_task/ffmpeg.log
+    mode: truncate
+  args-convention: unix
   cmd-arguments:
-    - recursive: ""
-    - output: output.txt
-- name: test_name2
-  executable-path: /Desktop/test_folder
+    - i: /home/ivan_main/Downloads/sato.webm
+    - "*": /home/ivan_main/Downloads/out.opus
+- name: ffmpeg
+  executable-path: /usr/bin
   stdout-config:
-    file: /var/log/apps/example_app1.log
+    file: /home/ivan_main/development/technical_task/ffmpeg.log
     mode: append
-  args-convention: linux
+  args-convention: unix
   cmd-arguments:
-  - option-name: arg1
-  - option-name: arg2
+    - i: /home/ivan_main/Downloads/sato.webm
+    - "*": /home/ivan_main/Downloads/out.mp3

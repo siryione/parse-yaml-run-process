@@ -7,6 +7,6 @@ _*technical task for basecamp students*_
 
 2. Build the program linking static library 
 ```
-g++ -o filename main.cpp -lyaml-cpp
+g++ -o result main.cpp process.cpp -lyaml-cpp -pthread -std=c++17
 ```
 **Note:** specify `yaml-cpp` location for the linker in case the library is not located in your working directory
