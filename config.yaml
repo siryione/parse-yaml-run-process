@@ -1,0 +1,20 @@
+---
+processes:
+- name: ffmpeg
+  executable-path: /usr/bin
+  stdout-config:
+    file: /home/ivan_main/development/technical_task/ffmpeg.log
+    mode: truncate
+  args-convention: unix
+  cmd-arguments:
+    - i: /home/ivan_main/Downloads/sato.webm
+    - "*": /home/ivan_main/Downloads/out.opus
+- name: ffmpeg
+  executable-path: /usr/bin
+  stdout-config:
+    file: /home/ivan_main/development/technical_task/ffmpeg.log
+    mode: append
+  args-convention: unix
+  cmd-arguments:
+    - i: /home/ivan_main/Downloads/sato.webm
+    - "*": /home/ivan_main/Downloads/out.mp3
