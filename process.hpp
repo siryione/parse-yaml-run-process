@@ -38,9 +38,6 @@ struct Process{
     int run();
     std::string getExe();
     std::vector<std::string> getArgs();
-    // io_options()
-    private:
-    std::string output_buffer_{};
 };
 
 template<>
@@ -100,21 +97,6 @@ struct YAML::convert<ArgsConvention>{
             return false;
         }
         return true;
-
-        // if(convention == "windows"){
-        //     ac = ArgsConvention::windows_c;
-        // }
-        // else if(convention == "linux"){
-        //     ac = ArgsConvention::linux_c;
-        // }
-        // else if(convention == "unix"){
-        //     ac = ArgsConvention::unix_c;
-        // }
-        // else{
-        //     // elaborate
-        //     return false;
-        // }
-        // return true;
     }
 
 };
