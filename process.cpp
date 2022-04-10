@@ -34,7 +34,8 @@ int Process::run(){
     boost::process::std_out > hash_name, boost::process::std_err > hash_name);
     if(std::filesystem::exists(stdout_config.file)){
         std::ifstream ifile(hash_name, std::ios::in);
-        std::ofstream ofile(stdout_config.file, std::ios::out | std::ios::app);
+        std::ios::openmode omode = (stdout_config.mode == "append") ? std::ios::app : std::ios::trunc;
+        std::ofstream ofile(stdout_config.file, std::ios::out | omode);
 
         if (!ofile.is_open()) {
             std::cout << "file not found";
