@@ -2,4 +2,4 @@
 result
 build
 yaml-cpp
-ffmpeg.log
+*.log

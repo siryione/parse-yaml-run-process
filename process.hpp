@@ -35,9 +35,9 @@ struct Process{
     ArgsConvention args_convention;
     std::vector<CmdArgument> cmd_arguments;
 
-    int run();
-    std::string getExe();
-    std::vector<std::string> getArgs();
+    int run() const;
+    std::string getExe() const;
+    std::vector<std::string> getArgs() const;
 };
 
 template<>
